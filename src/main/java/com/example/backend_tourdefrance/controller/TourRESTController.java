@@ -45,11 +45,15 @@ public class TourRESTController {
   }
 
   //Ser ikke ud til at virke i poostman 500 fejl
-  @GetMapping("/showCyclistsByTeam/{id}")
-  public List<Cyclist> showCyclistsByTeam(@PathVariable int id){
-    return tourService.showCyclistsByTeam(id);
+  @GetMapping("/showCyclistsByTeam/{teamId}")
+  public List<Cyclist> showCyclistsByTeam(@PathVariable int teamId){
+    return tourService.showCyclistsByTeam(teamId);
   }
 
+  @GetMapping("/getCyclistsBy/{id}")
+  public List<Cyclist> getCyclistsByTeam(@PathVariable int id){
+    return tourService.getCyclistsByTeam(id);
+  }
   @DeleteMapping("/deleteCyclist/{cyclistId}")
   public void deleteCyclist(@PathVariable int cyclistId){
     tourService.deleteCyclist(cyclistId);
