@@ -16,7 +16,7 @@ public class Cyclist {
   private int id;
   private String name;
   private int age;
-  private int time;
+  private int timeTotalHours;
   private int sprintPoints;
   private int mountainPoints;
 
