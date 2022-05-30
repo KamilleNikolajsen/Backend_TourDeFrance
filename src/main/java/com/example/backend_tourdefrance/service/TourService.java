@@ -66,7 +66,7 @@ public class TourService {
 
     // Kilde: https://www.codebyamir.com/blog/sort-list-of-objects-by-field-java
     List<Team> sortedTeams = teams.stream()
-        .sorted(Comparator.comparing(Team::getTimeTotal).reversed())
+        .sorted(Comparator.comparing(Team::getTimeTotal))
         .collect(Collectors.toList());
 
     return sortedTeams;
