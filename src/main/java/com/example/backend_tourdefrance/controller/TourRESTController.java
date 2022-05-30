@@ -39,9 +39,10 @@ public class TourRESTController {
     return tourService.showAllTeams();
   }
 
-  @GetMapping("/showCyclistsByTeam/{teamId}")
-  public List<Cyclist> showCyclistsByTeam(@PathVariable int teamId){
-    return tourService.showCyclistsByTeam(teamId);
+  //Ser ikke ud til at virke i poostman 500 fejl
+  @GetMapping("/showCyclistsByTeam/{id}")
+  public List<Cyclist> showCyclistsByTeam(@PathVariable int id){
+    return tourService.showCyclistsByTeam(id);
   }
 
   @DeleteMapping("/deleteCyclist/{cyclistId}")

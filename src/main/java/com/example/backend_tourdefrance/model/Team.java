@@ -1,5 +1,6 @@
 package com.example.backend_tourdefrance.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,5 +20,6 @@ public class Team {
 
   @OneToMany
   @JoinColumn(name = "team_id")
+  @JsonBackReference
   private Set<Cyclist> cyclists = new HashSet<>();
 }

@@ -38,8 +38,8 @@ public class TourService {
     return teamRepository.findAll();
   }
 
-  public List<Cyclist> showCyclistsByTeam(int teamId) {
-    return cyclistRepository.findCyclistByTeam(teamId);
+  public List<Cyclist> showCyclistsByTeam(int id) {
+    return cyclistRepository.findCyclistByTeam(id);
   }
 
   public void deleteCyclist(int cyclistId) {

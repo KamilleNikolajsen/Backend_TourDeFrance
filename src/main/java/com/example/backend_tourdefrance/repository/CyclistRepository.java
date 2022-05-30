@@ -8,7 +8,7 @@ import java.util.List;
 public interface CyclistRepository extends JpaRepository<Cyclist, Integer> {
 
 
-  List<Cyclist> findCyclistByTeam(int teamId);
+  List<Cyclist> findCyclistByTeam(int id);
 
   Cyclist findCyclistById(int cyclistId);
 }
