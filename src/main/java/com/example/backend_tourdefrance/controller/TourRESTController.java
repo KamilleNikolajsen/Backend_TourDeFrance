@@ -34,6 +34,11 @@ public class TourRESTController {
     return tourService.showAllCyclists();
   }
 
+  @GetMapping("/getCyclist/{id}")
+  public Cyclist getCyclist(@PathVariable int id){
+    return tourService.getCyclist(id);
+  }
+
   @GetMapping("/showAllTeams")
   public List<Team> showAllTeams(){
     return tourService.showAllTeams();
