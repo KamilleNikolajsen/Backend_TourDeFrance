@@ -7,8 +7,8 @@ import com.example.backend_tourdefrance.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class TourService {
@@ -47,6 +47,85 @@ public class TourService {
     cyclistRepository.deleteById(cyclistId);
   }
 
+  public List<Team> teamsTimeSorted(){
+
+    List<Team> teams = teamRepository.findAll();
+    double time = 0;
+
+    for(Team team : teams){
+      Set<Cyclist> cyclists = team.getCyclists();
+      for (Cyclist cyclist : cyclists){
+        time += cyclist.getTimeTotalHours();
+        System.out.println(time);
+        team.setTimeTotal(time);
+      }
+      teamRepository.save(team);
+      time = 0;
+      System.out.println(time);
+    }
+
+    // Kilde: https://www.codebyamir.com/blog/sort-list-of-objects-by-field-java
+    List<Team> sortedTeams = teams.stream()
+        .sorted(Comparator.comparing(Team::getTimeTotal).reversed())
+        .collect(Collectors.toList());
+
+    return sortedTeams;
+  }
+
+  public List<Team> teamsMPointSorted(){
+
+    List<Team> teams = teamRepository.findAll();
+    int mPoints = 0;
+
+    for(Team team : teams){
+      Set<Cyclist> cyclists = team.getCyclists();
+      for (Cyclist cyclist : cyclists){
+        mPoints += cyclist.getMountainPoints();
+        System.out.println(mPoints);
+        team.setMountainPointTotal(mPoints);
+      }
+      teamRepository.save(team);
+      mPoints = 0;
+      System.out.println(mPoints);
+    }
+
+    // Kilde: https://www.codebyamir.com/blog/sort-list-of-objects-by-field-java
+    List<Team> sortedTeams = teams.stream()
+        .sorted(Comparator.comparing(Team::getMountainPointTotal).reversed())
+        .collect(Collectors.toList());
+
+    return sortedTeams;
+  }
+
+  public List<Team> teamsSPointSorted(){
+
+    List<Team> teams = teamRepository.findAll();
+
+    int sPoints = 0;
+
+    for(Team team : teams){
+      Set<Cyclist> cyclists = team.getCyclists();
+      for (Cyclist cyclist : cyclists){
+        sPoints += cyclist.getSprintPoints();
+        System.out.println(sPoints);
+        team.setSprintPointTotal(sPoints);
+      }
+      teamRepository.save(team);
+      sPoints = 0;
+      System.out.println(sPoints);
+    }
+
+    // Kilde: https://www.codebyamir.com/blog/sort-list-of-objects-by-field-java
+    List<Team> sortedTeams = teams.stream()
+        .sorted(Comparator.comparing(Team::getSprintPointTotal).reversed())
+        .collect(Collectors.toList());
+
+    return sortedTeams;
+  }
+
+
+
+/*
   public List<Cyclist> getCyclistsByTeam(int id){
 
     System.out.println(id);
@@ -57,8 +136,8 @@ public class TourService {
         cyclistsByTeam.add(cyclist);
       }
     }
-
     System.out.println(cyclistsByTeam);
     return cyclistsByTeam;
   }
+ */
 }

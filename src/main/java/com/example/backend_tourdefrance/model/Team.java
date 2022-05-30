@@ -17,6 +17,9 @@ public class Team {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   private String name;
+  private double timeTotal;
+  private int MountainPointTotal;
+  private int SprintPointTotal;
 
   @OneToMany
   @JoinColumn(name = "team_id")

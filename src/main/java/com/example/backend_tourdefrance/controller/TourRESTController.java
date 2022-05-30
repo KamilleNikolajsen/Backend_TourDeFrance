@@ -49,11 +49,13 @@ public class TourRESTController {
   public List<Cyclist> showCyclistsByTeam(@PathVariable int teamId){
     return tourService.showCyclistsByTeam(teamId);
   }
-
+/*
   @GetMapping("/getCyclistsBy/{id}")
   public List<Cyclist> getCyclistsByTeam(@PathVariable int id){
     return tourService.getCyclistsByTeam(id);
   }
+
+ */
   @DeleteMapping("/deleteCyclist/{cyclistId}")
   public void deleteCyclist(@PathVariable int cyclistId){
     tourService.deleteCyclist(cyclistId);
@@ -69,6 +71,21 @@ public class TourRESTController {
       return  new ResponseEntity<>(cyclist, HttpStatus.OK);
     }
     return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+  }
+
+  @GetMapping("/bestCountryByTime")
+  public List<Team> teamsRangedByTime(){
+    return tourService.teamsTimeSorted();
+  }
+
+  @GetMapping("/bestCountryBySPoints")
+  public List<Team> teamsRangedBySPoint(){
+    return tourService.teamsSPointSorted();
+  }
+
+  @GetMapping("/bestCountryByMPoints")
+  public List<Team> teamsRangedByMPoints(){
+    return tourService.teamsMPointSorted();
   }
 
 
