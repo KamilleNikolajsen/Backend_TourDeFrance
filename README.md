@@ -22,7 +22,12 @@ To use this project:
 - Set your envierment variables: user(username for local database), password(password for local database), url(url for local database)
 - Run program 
 - Open the webbrowser from Frontend_TourDeFrance
-- Hereafter you can create create, edit and delete cyclists and check which team is in the lead.
+- Hereafter you can create create, edit and delete cyclists and check which team is in the lead via Postman.
+
+if you want to manage cyclists from a webbrowser:
+- Frok Frontend_TourDeFrance
+- clone locally
+- open webbrowser through cyclists.html
 
 ## Contributing to Backend_TourDeFrance
 To contribut to Backend_TourDeFrance do the following:
