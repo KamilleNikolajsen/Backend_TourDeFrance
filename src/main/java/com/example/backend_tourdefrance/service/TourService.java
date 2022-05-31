@@ -23,10 +23,6 @@ public class TourService {
     return cyclistRepository.save(cyclist);
   }
 
-  public Team saveTeam(Team team) {
-    return teamRepository.save(team);
-  }
-
   public List<Cyclist> showAllCyclists(){
     return cyclistRepository.findAll();
   }
@@ -47,13 +43,12 @@ public class TourService {
     cyclistRepository.deleteById(cyclistId);
   }
 
-  public List<Team> teamsTimeSorted(){
+  public List<Team> teamsTimeSorted(List<Team> teams){
 
-    List<Team> teams = teamRepository.findAll();
     double time = 0;
 
     for(Team team : teams){
-      Set<Cyclist> cyclists = team.getCyclists();
+      List<Cyclist> cyclists = team.getCyclists();
       for (Cyclist cyclist : cyclists){
         time += cyclist.getTimeTotalHours();
         System.out.println(time);
@@ -72,13 +67,12 @@ public class TourService {
     return sortedTeams;
   }
 
-  public List<Team> teamsMPointSorted(){
+  public List<Team> teamsMPointSorted(List<Team> teams){
 
-    List<Team> teams = teamRepository.findAll();
     int mPoints = 0;
 
     for(Team team : teams){
-      Set<Cyclist> cyclists = team.getCyclists();
+      List<Cyclist> cyclists = team.getCyclists();
       for (Cyclist cyclist : cyclists){
         mPoints += cyclist.getMountainPoints();
         System.out.println(mPoints);
@@ -97,14 +91,12 @@ public class TourService {
     return sortedTeams;
   }
 
-  public List<Team> teamsSPointSorted(){
-
-    List<Team> teams = teamRepository.findAll();
+  public List<Team> teamsSPointSorted(List<Team> teams){
 
     int sPoints = 0;
 
     for(Team team : teams){
-      Set<Cyclist> cyclists = team.getCyclists();
+      List<Cyclist> cyclists = team.getCyclists();
       for (Cyclist cyclist : cyclists){
         sPoints += cyclist.getSprintPoints();
         System.out.println(sPoints);
@@ -123,21 +115,4 @@ public class TourService {
     return sortedTeams;
   }
 
-
-
-/*
-  public List<Cyclist> getCyclistsByTeam(int id){
-
-    System.out.println(id);
-    List<Cyclist> allCyclists = cyclistRepository.findAll();
-    List<Cyclist> cyclistsByTeam = new LinkedList<>();
-    for(Cyclist cyclist : allCyclists){
-      if(cyclist.getTeam().getId() == id){
-        cyclistsByTeam.add(cyclist);
-      }
-    }
-    System.out.println(cyclistsByTeam);
-    return cyclistsByTeam;
-  }
- */
 }

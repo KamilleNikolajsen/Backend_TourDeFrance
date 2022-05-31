@@ -3,14 +3,14 @@ package com.example.backend_tourdefrance.controller;
 import com.example.backend_tourdefrance.model.Cyclist;
 import com.example.backend_tourdefrance.model.Team;
 import com.example.backend_tourdefrance.service.TourService;
-import com.sun.xml.bind.annotation.XmlIsSet;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @CrossOrigin
@@ -23,12 +23,7 @@ public class TourRESTController {
   public Cyclist addCyclist(@RequestBody Cyclist cyclist){
     return tourService.saveCyclist(cyclist);
   }
-/*
-  @PostMapping("/addTeam")
-  public Team addTeam(@RequestBody Team team){
-    return tourService.saveTeam(team);
-  }
- */
+
   @GetMapping("/showAllCyclists")
   public List<Cyclist> showAllCyclists(){
     return tourService.showAllCyclists();
@@ -44,18 +39,11 @@ public class TourRESTController {
     return tourService.showAllTeams();
   }
 
-  //Ser ikke ud til at virke i poostman 500 fejl
   @GetMapping("/showCyclistsByTeam/{teamId}")
   public List<Cyclist> showCyclistsByTeam(@PathVariable int teamId){
     return tourService.showCyclistsByTeam(teamId);
   }
-/*
-  @GetMapping("/getCyclistsBy/{id}")
-  public List<Cyclist> getCyclistsByTeam(@PathVariable int id){
-    return tourService.getCyclistsByTeam(id);
-  }
 
- */
   @DeleteMapping("/deleteCyclist/{cyclistId}")
   public void deleteCyclist(@PathVariable int cyclistId){
     tourService.deleteCyclist(cyclistId);
@@ -75,25 +63,20 @@ public class TourRESTController {
 
   @GetMapping("/bestCountryByTime")
   public List<Team> teamsRangedByTime(){
-    return tourService.teamsTimeSorted();
+    List<Team> teams = tourService.showAllTeams();
+    return tourService.teamsTimeSorted(teams);
   }
 
   @GetMapping("/bestCountryBySPoints")
   public List<Team> teamsRangedBySPoint(){
-    return tourService.teamsSPointSorted();
+    List<Team> teams = tourService.showAllTeams();
+    return tourService.teamsSPointSorted(teams);
   }
 
   @GetMapping("/bestCountryByMPoints")
   public List<Team> teamsRangedByMPoints(){
-    return tourService.teamsMPointSorted();
+    List<Team> teams = tourService.showAllTeams();
+    return tourService.teamsMPointSorted(teams);
   }
-
-
-  /*
-  @DeleteMapping("/deleteTeam/{teamId}")
-  public void deleteTeam(@PathVariable int teamId){
-    tourService.deleteTeam(teamId);
-  }
-   */
 
 }

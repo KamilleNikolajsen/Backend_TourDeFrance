@@ -5,9 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -24,5 +23,5 @@ public class Team {
   @OneToMany
   @JoinColumn(name = "team_id")
   @JsonBackReference
-  private Set<Cyclist> cyclists = new HashSet<>();
+  private List<Cyclist> cyclists = new LinkedList<>();
 }
