@@ -79,4 +79,14 @@ public class TourRESTController {
     return tourService.teamsMPointSorted(teams);
   }
 
+  @GetMapping("/ShowCyclistsSortedByTeam")
+  public List<Cyclist> cyclistsSortedByTeam(){
+    return tourService.cyclistsSortedByTeam();
+  }
+
+  @GetMapping("/showCyclistsSortedByTime")
+  public List<Cyclist> cyclistsSortedByTime(){
+    return tourService.cyclistsSortedByTime();
+  }
+
 }

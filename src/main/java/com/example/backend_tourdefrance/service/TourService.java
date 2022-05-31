@@ -115,4 +115,33 @@ public class TourService {
     return sortedTeams;
   }
 
+  public List<Cyclist> cyclistsSortedByTeam(){
+    List<Team> teams = teamRepository.findAll();
+
+    List<Team> sortedTeams = teams.stream()
+        .sorted(Comparator.comparing(Team::getName).reversed())
+        .collect(Collectors.toList());
+
+    List<Cyclist> sortedCyclists = new LinkedList<>();
+
+    for(Team team : sortedTeams){
+     List<Cyclist> cyclists = team.getCyclists();
+      sortedCyclists.addAll(cyclists);
+    }
+
+    System.out.println(sortedCyclists);
+
+    return sortedCyclists;
+  }
+
+  public List<Cyclist> cyclistsSortedByTime(){
+    List<Cyclist> cyclists = cyclistRepository.findAll();
+
+    List<Cyclist> sortedCyclists = cyclists.stream()
+        .sorted(Comparator.comparing(Cyclist::getTimeTotalHours))
+        .collect(Collectors.toList());
+
+    return sortedCyclists;
+  }
+
 }
